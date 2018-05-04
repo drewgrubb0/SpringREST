@@ -1,0 +1,5 @@
+INSERT INTO ADVERTISER
+VALUES(10001, 'Pepsi', 'Indra Nooyi', '2500');
+
+INSERT INTO ADVERTISER
+VALUES(10002, 'Coke', 'Ahmet Muhtar Kent', '4000');
