@@ -13,14 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class SpringAdvertiseApplicationTest
 {
-    //Error with test class: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class:
-    //file [C:\Users\Drew\Desktop\Software Engineering\Java\SpringAdvertise\out\production\classes\dg\springrest\core\SpringAdvertiseApplication.class]
-
     @Autowired
     private AdvertiserController controller;
 
     @Test
-    public void getInfo()
+    public void controllerExists()
     {
         assertThat(controller).isNotNull();
     }

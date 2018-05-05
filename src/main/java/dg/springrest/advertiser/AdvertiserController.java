@@ -1,8 +1,8 @@
 package dg.springrest.advertiser;
 
-import dg.springrest.ui.InfoWrapper;
 import dg.springrest.errors.AdvertiserNotFoundException;
 import dg.springrest.errors.InvalidRequestException;
+import dg.springrest.ui.InfoWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class AdvertiserController
         Advertiser temp = repository.findById(idToFetch);
 
         if(temp == null)
-            throw new AdvertiserNotFoundException("An advertiser with id=" + idToFetch + " does not exist");
+            throw new AdvertiserNotFoundException("An advertiser with that id does not exist");
 
         return temp;
     }
