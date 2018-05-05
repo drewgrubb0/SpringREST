@@ -10,6 +10,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Date;
 
+/**
+ * When an exception is thrown, this class is in charge of creating the Error JSON's that will be sent
+ * back to the user.
+ */
 @ControllerAdvice
 @RestController
 public class RESTExceptionHandler extends ResponseEntityExceptionHandler

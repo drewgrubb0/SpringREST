@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * This class contains all of the request methods utilized by the Advertiser group.
+ * This class contains all of the RESTful request methods utilized by the Advertiser group.
  */
 @RestController
 @RequestMapping("/api/advertiser")

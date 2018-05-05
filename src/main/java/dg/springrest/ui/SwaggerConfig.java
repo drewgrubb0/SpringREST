@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * This class integrates the Swagger Springfox User Interface with this REST API.
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig
@@ -31,7 +34,7 @@ public class SwaggerConfig
         return new ApiInfoBuilder()
                 .title("Drew Grubb Advertiser API")
                 .description("A RESTful API for handling advertisers")
-                .version("0.1")
+                .version("0.1.6")
                 .contact(new Contact("Drew Grubb", "https://linkedin.com/in/drew-grubb", ""))
                 .license("Github Repository")
                 .licenseUrl("https://github.com/drewgrubb0/SpringREST")

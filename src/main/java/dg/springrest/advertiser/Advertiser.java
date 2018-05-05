@@ -6,7 +6,7 @@ import lombok.ToString;
 
 /**
  * This class holds the Schema for the Advertiser class that will be used within the H2 Database.
- * Advertiser holds onto the Advertiser Name, Contact Name, and Credit Limit.
+ * Advertiser holds onto the Advertiser Id, Name, Contact Name, and Credit Limit.
  */
 @ToString
 @Getter
