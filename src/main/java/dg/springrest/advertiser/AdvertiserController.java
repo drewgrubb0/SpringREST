@@ -49,8 +49,6 @@ public class AdvertiserController
     public InfoWrapper getCreditValidation(@RequestHeader(value = "id") String id,
                                            @RequestHeader(value="transactionCost") String transactionCost)
     {
-        logger.info("Made it here");
-
         if(!isLong(id))
             throw new InvalidRequestException("ID must be of type long");
         if(!isDouble(transactionCost) || Double.parseDouble(transactionCost) <= 0)
@@ -63,7 +61,7 @@ public class AdvertiserController
             throw new AdvertiserNotFoundException("An advertiser with id=" + idToFetch + " does not exist");
 
         if(Double.parseDouble(transactionCost) > temp.getCreditLimit())
-           return new InfoWrapper("Sorry! You cannot afford a transaction of that size");
+           throw new InvalidRequestException("Sorry! You cannot afford a transaction of that size!");
 
         return new InfoWrapper("You can afford a transaction of that size");
     }
@@ -77,7 +75,7 @@ public class AdvertiserController
     @RequestMapping(method = RequestMethod.POST)
     public InfoWrapper addAdvertiser(String name, String contactName, String creditLimit, HttpServletResponse response)
     {
-        if(name == null || creditLimit == null || creditLimit == null)
+        if(name == null || contactName == null || creditLimit == null)
             throw new InvalidRequestException("Please enter name, contactname, and creditlimit fields");
         if(!isDouble(creditLimit))
             throw new InvalidRequestException("creditlimit must be a real number > 0");
@@ -100,7 +98,6 @@ public class AdvertiserController
             throw new InvalidRequestException("Id must be entered");
         if(!isLong(id))
             throw new InvalidRequestException("ID must be of type long");
-
         if(name == null && contactName == null && creditLimit == null)
             throw new InvalidRequestException("need to input new name, contactName, or creditLimit value");
         if(creditLimit != null && (!isDouble(creditLimit) || Double.parseDouble(creditLimit) <= 0))
@@ -125,8 +122,6 @@ public class AdvertiserController
     @RequestMapping(value = "/deduct", method = RequestMethod.POST)
     public Advertiser deductCredits(String id, String creditsToDeduct)
     {
-        logger.info("Made it here");
-
         if(id == null || creditsToDeduct == null)
             throw new InvalidRequestException("id and creditsToDeduct must be entered");
         if(!isLong(id))

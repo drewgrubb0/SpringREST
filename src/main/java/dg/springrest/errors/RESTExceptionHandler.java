@@ -25,7 +25,7 @@ public class RESTExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(details, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(AdvertiserNotFoundException.class)
+    @ExceptionHandler({AdvertiserNotFoundException.class})
     public final ResponseEntity<Error> handleAdvertiserNotFoundException(InvalidRequestException e, WebRequest request)
     {
         Error details = new Error(new Date(), e.getMessage(), request.getDescription(false));
