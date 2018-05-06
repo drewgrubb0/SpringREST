@@ -31,7 +31,8 @@ Handling Errors:
 * Exception can now be thrown cleanly
 
 ## Running
-* I was unable to create an executable jar with gradle/spring boot dependencies due to a lack of a unix machine, so the only way to run this application is through an IDE or using unix.
+* I was unable to create an executable jar with gradle/spring boot dependencies, so the only way to run this application is through an IDE.
+* From what I could tell, gradle/spring creates the .class files in ./out, but does not create an executable jar unless you are on a unix machine, making creating a jar with the required dependencies difficult.
 
 ## Testing
 After Building, testing can be done by running AdvertiserControllerTest:
