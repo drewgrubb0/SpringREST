@@ -1,8 +1,8 @@
 # SpringREST
 A RESTful API built in Java ran by Spring boot
 
-## Building
-Using IntelliJ:
+## Building a Jar
+In IntelliJ:
 * Download Repository
 * Place in a folder called SpringAdvertise
 * Import using IntelliJ
@@ -10,6 +10,8 @@ Using IntelliJ:
 * Add Lombok IntelliJ Plugin (required for Lombok Annotations)
 * File->Settings->Build,Execute,Deployment->Annotation Processing->Enable Annotation Processing
 * Restart  IntelliJ
+
+Building a new jar requires gradle, java jdk, the jdk path being in %PATH%, and the jdk path being in gradle.properties
 
 ## Developing
 Creating API to Repo Requests:
@@ -31,8 +33,8 @@ Handling Errors:
 * Exception can now be thrown cleanly
 
 ## Running
-* I was unable to create an executable jar with gradle/spring boot dependencies, so the only way to run this application is through an IDE.
-* From what I could tell, gradle/spring creates the .class files in ./out, but does not create an executable jar unless you are on a unix machine, making creating a jar with the required dependencies difficult.
+The Jar:
+* Double click the Jar file :)
 
 ## Testing
 After Building, testing can be done by running AdvertiserControllerTest:
@@ -41,8 +43,8 @@ After Building, testing can be done by running AdvertiserControllerTest:
 
 # Problems/Conclusion
 Some things I was unable to complete:
-* Creating an executable jar
 * There's a problem with the applications where extra endpoints ("/api/advertiser/credit") do not work with the swagger ui. These endpoints work in an API Dev Environment like PostMan or even straight from the browser, but for some reason return "TypeError, Failed to Fetch" in the swagger UI. All attempts to remedy that have failed.
+* Integrating my in-memory database with flyway
 
 Some things I would like to do in the future:
 * Add flyway integration so it is not an in-memory database (would require changing the way I assign advertiser ID's)
