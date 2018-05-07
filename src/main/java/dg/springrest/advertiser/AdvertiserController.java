@@ -6,13 +6,11 @@ import dg.springrest.ui.InfoWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -24,8 +22,8 @@ public class AdvertiserController
 {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //Used to synchronously generate new ID's when adding to the table
-    private final AtomicLong numAccesses = new AtomicLong();
+    //Used to generate new ID's when adding to the table
+    Random rand = new Random();
 
     @Autowired
     AdvertiserRepository repository;
@@ -66,14 +64,14 @@ public class AdvertiserController
         return new InfoWrapper("You can afford a transaction of that size");
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Advertiser> getAll()
     {
         return repository.getAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public InfoWrapper addAdvertiser(String name, String contactName, String creditLimit, HttpServletResponse response)
+    public Advertiser addAdvertiser(String name, String contactName, String creditLimit, HttpServletResponse response)
     {
         if(name == null || contactName == null || creditLimit == null)
             throw new InvalidRequestException("Please enter name, contactname, and creditlimit fields");
@@ -85,10 +83,20 @@ public class AdvertiserController
         if(credit <= 0)
             throw new InvalidRequestException("creditlimit must be a real number > 0");
 
-        repository.add(new Advertiser(numAccesses.incrementAndGet(), name, contactName, credit));
+        long newID = (long) rand.nextInt(900000) + 100000;
+
+        //Possible problem: More than 899,999 advertisers
+        //Solution: Pad beginning of existing ID's with zeroes to increase space
+        while(repository.findById(newID) != null)
+        {
+            newID = (long) rand.nextInt(900000) + 100000;
+        }
+
+        Advertiser temp = new Advertiser(newID, name, contactName, credit);
+        repository.add(temp);
 
         response.setStatus(HttpServletResponse.SC_CREATED);
-        return new InfoWrapper("POST successful!");
+        return temp;
     }
 
     @RequestMapping(method = RequestMethod.PUT)
