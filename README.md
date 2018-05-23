@@ -1,5 +1,24 @@
 # SpringREST
-A RESTful API built in Java ran by Spring boot
+
+This is a RESTful API built using Spring Boot and a variety of tools currently utilized in the Development-Operations industry. The goal of this project was to build a Spring Boot API in Java that could keep track of information in a MySQL database.
+
+To run this project, simply download the .jar file and run it using the Java Virtual Machine (8+).
+
+To see the project in action after running it, visit http://localhost:8080/swagger-ui.html. Actuator endpoints can be accessed via http://localhost:8090/actuator
+
+### Tools Used
+- Java 8
+- Spring Boot Web
+- Gradle
+- Swagger Springfox
+- JSON
+- H2
+- Actuator
+- Mybatis
+- JUnit
+- Lombok
+
+Below are some useful tips for development, should you attempt to fork/add to this project.
 
 ## Building a Jar
 In IntelliJ:
@@ -32,23 +51,7 @@ Handling Errors:
 * Add exception to the ExceptionHandler class
 * Exception can now be thrown cleanly
 
-## Running
-The Jar:
-* Double click the Jar file :)
-
 ## Testing
 After Building, testing can be done by running AdvertiserControllerTest:
 * Creating API request tests is as simple as using the MockMvc to perform mock operations on the controller requests.
 * Testing can also be done manually using the Swagger UI
-
-# Problems/Conclusion
-Some things I was unable to complete:
-* There's a problem with the applications where extra endpoints ("/api/advertiser/credit") do not work with the swagger ui. These endpoints work in an API Dev Environment like PostMan or even straight from the browser, but for some reason return "TypeError, Failed to Fetch" in the swagger UI. All attempts to remedy that have failed.
-* Integrating my in-memory database with flyway
-
-Some things I would like to do in the future:
-* Add flyway integration so it is not an in-memory database (would require changing the way I assign advertiser ID's)
-* Fixing the problems I was unable to solve when my knowledge of Spring Boot / REST has increased
-* Adding more endpoints or repositories to keep track of more than just advertisers
-
-This project gave me experience in a lot of things I had not utilized before. Gradle, Spring, Spring boot, Swagger, H2, Lombok, IntelliJ, Actuator, Spring-MVC and a variety of gradle plugins. In the future I hope to work more with these plugins and applications, and continuously grow my knowledge in Software Engineering.
