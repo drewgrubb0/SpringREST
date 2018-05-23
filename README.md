@@ -1,6 +1,6 @@
 # SpringREST
 
-This is a RESTful API built using Spring Boot and a variety of tools currently utilized in the Development-Operations industry. The goal of this project was to build a Spring Boot API in Java that could keep track of information in a MySQL database.
+This is a RESTful API built using Spring Boot and a variety of tools currently utilized in the Development-Operations industry. The goal of this project was to build a Spring Boot API in Java that could keep track of advertising information in a MySQL database.
 
 To run this project, simply download the .jar file and run it using the Java Virtual Machine (8+).
 
