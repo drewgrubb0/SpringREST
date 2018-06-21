@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * This class contains all of the RESTful request methods utilized by the Advertiser group.
  */
 @RestController
-@RequestMapping("/api/advertiser")
+@RequestMapping("/api/advertising")
 public class AdvertiserController
 {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
