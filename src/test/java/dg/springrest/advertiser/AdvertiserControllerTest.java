@@ -60,11 +60,11 @@ public class AdvertiserControllerTest
     @Test
     public void getAdvertiserNegative() throws Exception
     {
-        mvc.perform(get("/api/advertiser")
+        mvc.perform(get("/api/advertising")
                 .header("id", "10gf001"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(get("/api/advertiser")
+        mvc.perform(get("/api/advertising")
                 .header("id", "2424"))
                 .andExpect(status().isNotFound());
     }
@@ -74,7 +74,7 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(get("/api/advertiser")
+        mvc.perform(get("/api/advertising")
                 .header("id", "10001")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -87,7 +87,7 @@ public class AdvertiserControllerTest
     @Test
     public void addAdvertiserPositive() throws Exception
     {
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("contactName", "jason")
                 .param("name", "Gushers")
                 .param("creditLimit", "5000"))
@@ -97,32 +97,32 @@ public class AdvertiserControllerTest
     @Test
     public void addAdvertiserNegative() throws Exception
     {
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("id", "10gf01")
                 .param("contactName", "jason"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("contactName", "jason"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("contactName", "jason")
                 .param("name", "Gushers")
                 .param("creditLimit", "-5000"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("contactName", "jason")
                 .param("creditLimit", "5000"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("name", "Gushers")
                 .param("creditLimit", "5000"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser")
+        mvc.perform(post("/api/advertising")
                 .param("contactName", "jason")
                 .param("name", "Gushers")
                 .param("creditLimit", "5fg00"))
@@ -134,27 +134,27 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("id", "10gf01")
                 .param("contactName", "jason"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("id", "10001"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("contactName", "jason"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("id", "10001")
                 .param("creditLimit", "354gf"))
                 .andExpect(status().isBadRequest());
 
         given(repository.findById(10001)).willReturn(null);
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("id", "10001")
                 .param("contactName", "jason"))
                 .andExpect(status().isNotFound());
@@ -165,7 +165,7 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(put("/api/advertiser")
+        mvc.perform(put("/api/advertising")
                 .param("id", "10001")
                 .param("contactName", "jason")
                 .param("name", "Gushers")
@@ -180,11 +180,11 @@ public class AdvertiserControllerTest
     @Test
     public void deleteAdvertiserNegative() throws Exception
     {
-        mvc.perform(delete("/api/advertiser")
+        mvc.perform(delete("/api/advertising")
                 .header("id", "10gf001"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(delete("/api/advertiser")
+        mvc.perform(delete("/api/advertising")
                 .param("id", "2424"))
                 .andExpect(status().isNotFound());
     }
@@ -194,7 +194,7 @@ public class AdvertiserControllerTest
     {
         given(repository.deleteById(10001)).willReturn(1);
 
-        mvc.perform(delete("/api/advertiser")
+        mvc.perform(delete("/api/advertising")
                 .param("id", "10001"))
                 .andExpect(status().isOk());
     }
@@ -204,19 +204,19 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(get("/api/advertiser/credit")
+        mvc.perform(get("/api/advertising/credit")
                 .header("id", "100fsd01")
                 .header("transactionCost", "5000")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(get("/api/advertiser/credit")
+        mvc.perform(get("/api/advertising/credit")
                 .header("id", "10001")
                 .header("transactionCost", "5dfg000")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(get("/api/advertiser/credit")
+        mvc.perform(get("/api/advertising/credit")
                 .header("id", "10001")
                 .header("transactionCost", "5000")
                 .accept(MediaType.APPLICATION_JSON))
@@ -224,7 +224,7 @@ public class AdvertiserControllerTest
 
         given(repository.findById(2424)).willReturn(null);
 
-        mvc.perform(get("/api/advertiser/credit")
+        mvc.perform(get("/api/advertising/credit")
                 .header("id", "2424")
                 .header("transactionCost", "5000")
                 .accept(MediaType.APPLICATION_JSON))
@@ -236,7 +236,7 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(get("/api/advertiser/credit")
+        mvc.perform(get("/api/advertising/credit")
                 .header("id", "10001")
                 .header("transactionCost", "500")
                 .accept(MediaType.APPLICATION_JSON))
@@ -250,7 +250,7 @@ public class AdvertiserControllerTest
 
         given(repository.getAll()).willReturn(advertisers);
 
-        mvc.perform(get("/api/advertiser/all"))
+        mvc.perform(get("/api/advertising/all"))
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -262,27 +262,27 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("creditsToDeduct", "500"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10001"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10001")
                 .param("creditsToDeduct", "50f0"))
                 .andExpect(status().isBadRequest());
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10f01")
                 .param("creditsToDeduct", "50f0"))
                 .andExpect(status().isBadRequest());
 
         given(repository.findById(10001)).willReturn(null);
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10001")
                 .param("creditsToDeduct", "500"))
                 .andExpect(status().isNotFound());
@@ -293,12 +293,12 @@ public class AdvertiserControllerTest
     {
         given(repository.findById(10001)).willReturn(advertiser1);
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10001")
                 .param("creditsToDeduct", "500"))
                 .andExpect(status().isOk());
 
-        mvc.perform(post("/api/advertiser/deduct")
+        mvc.perform(post("/api/advertising/deduct")
                 .param("id", "10001")
                 .param("creditsToDeduct", "5000"))
                 .andExpect(status().isOk())
