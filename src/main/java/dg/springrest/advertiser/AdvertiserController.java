@@ -28,7 +28,7 @@ public class AdvertiserController
     @Autowired
     AdvertiserRepository repository;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public Advertiser getAdvertiser(@RequestHeader(value = "id") String id)
     {
         if(!isLong(id))
@@ -43,7 +43,7 @@ public class AdvertiserController
         return temp;
     }
 
-    @RequestMapping(value = "/credit", method = RequestMethod.GET)
+    @GetMapping(value = "/credit")
     public InfoWrapper getCreditValidation(@RequestHeader(value = "id") String id,
                                            @RequestHeader(value="transactionCost") String transactionCost)
     {
@@ -64,13 +64,13 @@ public class AdvertiserController
         return new InfoWrapper("You can afford a transaction of that size");
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public List<Advertiser> getAll()
     {
         return repository.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Advertiser addAdvertiser(String name, String contactName, String creditLimit, HttpServletResponse response)
     {
         if(name == null || contactName == null || creditLimit == null)
@@ -99,7 +99,7 @@ public class AdvertiserController
         return temp;
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public Advertiser updateAdvertiser(String id, String name, String contactName, String creditLimit)
     {
         if(id == null)
@@ -127,7 +127,7 @@ public class AdvertiserController
         return temp;
     }
 
-    @RequestMapping(value = "/deduct", method = RequestMethod.POST)
+    @PostMapping(value = "/deduct")
     public Advertiser deductCredits(String id, String creditsToDeduct)
     {
         if(id == null || creditsToDeduct == null)
@@ -151,7 +151,7 @@ public class AdvertiserController
         return temp;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     public InfoWrapper deleteAdvertiser(String id, HttpServletResponse response)
     {
         if(!isLong(id))
